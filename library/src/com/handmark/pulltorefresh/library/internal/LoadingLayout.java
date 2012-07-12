@@ -86,9 +86,9 @@ public class LoadingLayout extends FrameLayout {
 			case PULL_DOWN_TO_REFRESH:
 			default:
 				// Load in labels
-			  mPullLabel = context.getString(attrs.getInteger(R.styleable.PullToRefresh_pull_to_refresh_pull_label,R.string.pull_to_refresh_pull_label));
-        mRefreshingLabel = context.getString(attrs.getInteger(R.styleable.PullToRefresh_pull_to_refresh_refreshing_label, R.string.pull_to_refresh_refreshing_label));
-        mReleaseLabel = context.getString(attrs.getInteger(R.styleable.PullToRefresh_pull_to_refresh_release_label, R.string.pull_to_refresh_release_label));
+			  mPullLabel = context.getString(attrs.getInteger(R.styleable.PullToRefresh_pull_to_refresh_pull_label,R.string.pull_to_refresh_pull_label_string));
+        mRefreshingLabel = context.getString(attrs.getInteger(R.styleable.PullToRefresh_pull_to_refresh_refreshing_label, R.string.pull_to_refresh_refreshing_label_string));
+        mReleaseLabel = context.getString(attrs.getInteger(R.styleable.PullToRefresh_pull_to_refresh_release_label, R.string.pull_to_refresh_release_label_string));
 				break;
 		}
 
