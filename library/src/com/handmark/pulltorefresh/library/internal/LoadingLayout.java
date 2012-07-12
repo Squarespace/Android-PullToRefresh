@@ -73,21 +73,22 @@ public class LoadingLayout extends FrameLayout {
 		mRotateAnimation.setDuration(DEFAULT_ROTATION_ANIMATION_DURATION);
 		mRotateAnimation.setRepeatCount(Animation.INFINITE);
 		mRotateAnimation.setRepeatMode(Animation.RESTART);
-
+		
 		switch (mode) {
 			case PULL_UP_TO_REFRESH:
 				// Load in labels
-				mPullLabel = context.getString(R.string.pull_to_refresh_from_bottom_pull_label);
-				mRefreshingLabel = context.getString(R.string.pull_to_refresh_from_bottom_refreshing_label);
-				mReleaseLabel = context.getString(R.string.pull_to_refresh_from_bottom_release_label);
+		
+				mPullLabel = context.getString(attrs.getInteger(R.styleable.PullToRefresh_pull_to_refresh_from_bottom_pull_label,R.string.pull_to_refresh_from_bottom_pull_label));
+				mRefreshingLabel = context.getString(attrs.getInteger(R.styleable.PullToRefresh_pull_to_refresh_from_bottom_refreshing_label, R.string.pull_to_refresh_from_bottom_refreshing_label));
+				mReleaseLabel = context.getString(attrs.getInteger(R.styleable.PullToRefresh_pull_to_refresh_from_bottom_release_label, R.string.pull_to_refresh_from_bottom_release_label));
 				break;
 
 			case PULL_DOWN_TO_REFRESH:
 			default:
 				// Load in labels
-				mPullLabel = context.getString(R.string.pull_to_refresh_pull_label);
-				mRefreshingLabel = context.getString(R.string.pull_to_refresh_refreshing_label);
-				mReleaseLabel = context.getString(R.string.pull_to_refresh_release_label);
+			  mPullLabel = context.getString(attrs.getInteger(R.styleable.PullToRefresh_pull_to_refresh_pull_label,R.string.pull_to_refresh_pull_label));
+        mRefreshingLabel = context.getString(attrs.getInteger(R.styleable.PullToRefresh_pull_to_refresh_refreshing_label, R.string.pull_to_refresh_refreshing_label));
+        mReleaseLabel = context.getString(attrs.getInteger(R.styleable.PullToRefresh_pull_to_refresh_release_label, R.string.pull_to_refresh_release_label));
 				break;
 		}
 
