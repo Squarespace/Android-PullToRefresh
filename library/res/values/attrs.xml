@@ -23,6 +23,8 @@
         
         <attr name="rotation_mode" format="reference|boolean" />
         
+        <attr name="pull_to_refresh_image_scale" format="reference|float"/>
+        
         <attr name="pull_to_refresh_pull_image" format="reference|integer"/>
         <attr name="pull_to_refresh_refreshing_image" format="reference|integer"/>
         <attr name="pull_to_refresh_release_image" format="reference|integer"/>

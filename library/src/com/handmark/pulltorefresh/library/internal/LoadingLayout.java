@@ -18,8 +18,11 @@ package com.handmark.pulltorefresh.library.internal;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -79,18 +82,30 @@ public class LoadingLayout extends FrameLayout {
     mRotateAnimation.setRepeatCount(Animation.INFINITE);
     mRotateAnimation.setRepeatMode(Animation.RESTART);
   }
-  
+  public Drawable getScaledDrawable(float scale,Drawable d){
+    
+    BitmapDrawable bd = (BitmapDrawable)d;
+    Bitmap b = Bitmap.createScaledBitmap(bd.getBitmap(),
+                         (int) (bd.getIntrinsicHeight() *scale),
+                         (int) (bd.getIntrinsicWidth() *scale),
+                         false);
+    return new BitmapDrawable(getResources(),b);
+  }
   public LoadingLayout(Context context, final Mode mode, TypedArray attrs) {
     super(context);
+    rotationMode=attrs.getBoolean(R.styleable.PullToRefresh_rotation_mode,true);
+    float scale=attrs.getFloat(R.styleable.PullToRefresh_pull_to_refresh_image_scale,1);
     ViewGroup header = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.pull_to_refresh_header, this);
     mHeaderText = (TextView) header.findViewById(R.id.pull_to_refresh_text);
     mSubHeaderText = (TextView) header.findViewById(R.id.pull_to_refresh_sub_text);
     mHeaderImage = (ImageView) header.findViewById(R.id.pull_to_refresh_image);
 
-    mHeaderImage.setScaleType(ScaleType.MATRIX);
     mHeaderImageMatrix = new Matrix();
-    mHeaderImage.setImageMatrix(mHeaderImageMatrix);
-
+    if(rotationMode){
+      mHeaderImage.setScaleType(ScaleType.MATRIX);
+      mHeaderImage.setImageMatrix(mHeaderImageMatrix);
+    }
+    
     final Interpolator interpolator = new LinearInterpolator();
     mRotateAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
         0.5f);
@@ -99,7 +114,6 @@ public class LoadingLayout extends FrameLayout {
     mRotateAnimation.setRepeatCount(Animation.INFINITE);
     mRotateAnimation.setRepeatMode(Animation.RESTART);
 
-    rotationMode=attrs.getBoolean(R.styleable.PullToRefresh_rotation_mode,true);
 
     switch (mode) {
       case PULL_UP_TO_REFRESH:
@@ -120,9 +134,9 @@ public class LoadingLayout extends FrameLayout {
           mReleaseLabel=context.getString(R.string.pull_to_refresh_from_bottom_release_label);
         }
         if(!rotationMode){
-          mHeaderImage_pull=attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_release_image);
-          mHeaderImage_refreshing=attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_refreshing_image);
-          mHeaderImage_release=attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_pull_image);
+          mHeaderImage_pull=getScaledDrawable(scale,attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_release_image));
+          mHeaderImage_refreshing=getScaledDrawable(scale,attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_refreshing_image));
+          mHeaderImage_release=getScaledDrawable(scale,attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_pull_image));
         }
         break;
 
@@ -146,9 +160,9 @@ public class LoadingLayout extends FrameLayout {
         } 
 
         if(!rotationMode){
-          mHeaderImage_pull=attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_pull_image);
-          mHeaderImage_refreshing=attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_refreshing_image);
-          mHeaderImage_release=attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_release_image);
+          mHeaderImage_pull=getScaledDrawable(scale,attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_pull_image));
+          mHeaderImage_refreshing=getScaledDrawable(scale,attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_refreshing_image));
+          mHeaderImage_release=getScaledDrawable(scale,attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_release_image));
         }
         
         break;
