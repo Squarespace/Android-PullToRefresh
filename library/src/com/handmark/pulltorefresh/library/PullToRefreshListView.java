@@ -88,7 +88,8 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 		}
 	}
 
-	@Override
+	@SuppressWarnings("deprecation")
+  @Override
 	protected final ListView createRefreshableView(Context context, AttributeSet attrs) {
 		ListView lv = new InternalListView(context, attrs);
 

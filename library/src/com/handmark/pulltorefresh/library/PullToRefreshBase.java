@@ -589,7 +589,8 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 		mShowViewWhileRefreshing = showView;
 	}
 
-	protected void addRefreshableView(Context context, T refreshableView) {
+	@SuppressWarnings("deprecation")
+  protected void addRefreshableView(Context context, T refreshableView) {
 		addView(refreshableView, new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, 0, 1.0f));
 	}
 
@@ -776,7 +777,8 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 	 * Updates the View State when the mode has been set. This does not do any
 	 * checking that the mode is different to current state so always updates.
 	 */
-	protected void updateUIForMode() {
+	@SuppressWarnings("deprecation")
+  protected void updateUIForMode() {
 		// Remove Header, and then add Header Loading View again if needed
 		if (this == mHeaderLayout.getParent()) {
 			removeView(mHeaderLayout);
@@ -859,7 +861,8 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 		return false;
 	}
 
-	private void measureView(View child) {
+	@SuppressWarnings("deprecation")
+  private void measureView(View child) {
 		ViewGroup.LayoutParams p = child.getLayoutParams();
 		if (p == null) {
 			p = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
