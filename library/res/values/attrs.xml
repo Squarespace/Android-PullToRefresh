@@ -13,12 +13,19 @@
         </attr>
         <attr name="ptrShowIndicator" format="reference|boolean" />
         <attr name="ptrDrawable" format="reference" />
+        
         <attr name="pull_to_refresh_from_bottom_pull_label" format="reference|integer"/>
         <attr name="pull_to_refresh_from_bottom_refreshing_label" format="reference|integer"/>
         <attr name="pull_to_refresh_from_bottom_release_label" format="reference|integer"/>
         <attr name="pull_to_refresh_pull_label" format="reference|integer"/>
         <attr name="pull_to_refresh_refreshing_label" format="reference|integer"/>
         <attr name="pull_to_refresh_release_label" format="reference|integer"/>
+        
+        <attr name="rotation_mode" format="reference|boolean" />
+        
+        <attr name="pull_to_refresh_pull_image" format="reference|integer"/>
+        <attr name="pull_to_refresh_refreshing_image" format="reference|integer"/>
+        <attr name="pull_to_refresh_release_image" format="reference|integer"/>
     </declare-styleable>
 
 </resources>

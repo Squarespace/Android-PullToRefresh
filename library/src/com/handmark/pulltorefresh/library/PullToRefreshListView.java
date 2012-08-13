@@ -20,6 +20,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -34,7 +35,8 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 	private LoadingLayout mFooterLoadingView;
 
 	private FrameLayout mLvFooterLoadingFrame;
-
+	
+	
 	public PullToRefreshListView(Context context) {
 		super(context);
 		setDisableScrollingWhileRefreshing(false);
@@ -87,10 +89,11 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 			mFooterLoadingView.setReleaseLabel(releaseLabel);
 		}
 	}
-
+	
 	@SuppressWarnings("deprecation")
   @Override
 	protected final ListView createRefreshableView(Context context, AttributeSet attrs) {
+	  
 		ListView lv = new InternalListView(context, attrs);
 
 		// Get Styles from attrs
@@ -102,13 +105,14 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 		frame.addView(mHeaderLoadingView, FrameLayout.LayoutParams.FILL_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
 		mHeaderLoadingView.setVisibility(View.GONE);
 		lv.addHeaderView(frame, null, false);
-
+		
 		mLvFooterLoadingFrame = new FrameLayout(context);
 		mFooterLoadingView = new LoadingLayout(context, Mode.PULL_UP_TO_REFRESH, a);
+		
 		mLvFooterLoadingFrame.addView(mFooterLoadingView, FrameLayout.LayoutParams.FILL_PARENT,
 				FrameLayout.LayoutParams.WRAP_CONTENT);
 		mFooterLoadingView.setVisibility(View.GONE);
-
+		
 		a.recycle();
 
 		// Set it to this so it can be used in ListActivity/ListFragment
