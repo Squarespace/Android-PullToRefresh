@@ -18,13 +18,13 @@ package com.handmark.pulltorefresh.library;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
 import com.handmark.pulltorefresh.library.internal.EmptyViewMethodAccessor;
 import com.handmark.pulltorefresh.library.internal.LoadingLayout;
 
@@ -55,7 +55,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 		return ((InternalListView) getRefreshableView()).getContextMenuInfo();
 	}
 
-	public void setPullLabel(String pullLabel, Mode mode) {
+	public void setPullLabel(String pullLabel, Mode mode,Drawable d) {
 		super.setPullLabel(pullLabel, mode);
 
 		if (null != mHeaderLoadingView && mode.canPullDown()) {

@@ -41,8 +41,11 @@ public class LoadingLayout extends FrameLayout {
 
 	static final int DEFAULT_ROTATION_ANIMATION_DURATION = 600;
 
-	private final ImageView mHeaderImage;
-	private final Matrix mHeaderImageMatrix;
+	private int mHeaderImage_pull;
+	private int mHeaderImage_release;
+  private int mHeaderImage_refreshing;
+  
+  private final Matrix mHeaderImageMatrix;
 
 	private final TextView mHeaderText;
 	private final TextView mSubHeaderText;
@@ -54,9 +57,40 @@ public class LoadingLayout extends FrameLayout {
 	private float mRotationPivotX, mRotationPivotY;
 
 	private final Animation mRotateAnimation;
+	
+	private boolean rotationMode;
 
+  private ImageView mHeaderImage;
+
+	public LoadingLayout(Context context){
+	  super(context);
+	  rotationMode=true;
+    ViewGroup header = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.pull_to_refresh_header, this);
+    mHeaderText = (TextView) header.findViewById(R.id.pull_to_refresh_text);
+    mSubHeaderText = (TextView) header.findViewById(R.id.pull_to_refresh_sub_text);
+    mHeaderImage = (ImageView) header.findViewById(R.id.pull_to_refresh_image);
+    mHeaderImage.setScaleType(ScaleType.MATRIX);
+    mHeaderImageMatrix = new Matrix();
+    mHeaderImage.setImageMatrix(mHeaderImageMatrix);
+    final Interpolator interpolator = new LinearInterpolator();
+    mRotateAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+        0.5f);
+    mRotateAnimation.setInterpolator(interpolator);
+    mRotateAnimation.setDuration(DEFAULT_ROTATION_ANIMATION_DURATION);
+    mRotateAnimation.setRepeatCount(Animation.INFINITE);
+    mRotateAnimation.setRepeatMode(Animation.RESTART);
+	}
+
+	public void disableRotationMode(int res_pull,int res_release,int res_refresh){
+	  this.rotationMode=false;
+	  this.mHeaderImage_pull=res_pull;
+	  this.mHeaderImage_refreshing=res_refresh;
+	  this.mHeaderImage_release=res_release;
+	}
+	
 	public LoadingLayout(Context context, final Mode mode, TypedArray attrs) {
 		super(context);
+    rotationMode=true;
 		ViewGroup header = (ViewGroup) LayoutInflater.from(context).inflate(R.layout.pull_to_refresh_header, this);
 		mHeaderText = (TextView) header.findViewById(R.id.pull_to_refresh_text);
 		mSubHeaderText = (TextView) header.findViewById(R.id.pull_to_refresh_sub_text);
@@ -162,6 +196,9 @@ public class LoadingLayout extends FrameLayout {
 
 	public void releaseToRefresh() {
 		mHeaderText.setText(Html.fromHtml(mReleaseLabel));
+		if(!rotationMode){
+		  mHeaderImage.setImageResource(this.mHeaderImage_release);
+		}
 	}
 
 	public void setPullLabel(String pullLabel) {
@@ -170,7 +207,11 @@ public class LoadingLayout extends FrameLayout {
 
 	public void refreshing() {
 		mHeaderText.setText(Html.fromHtml(mRefreshingLabel));
-		mHeaderImage.startAnimation(mRotateAnimation);
+		if(rotationMode){
+		  mHeaderImage.startAnimation(mRotateAnimation);
+		}else{
+		  mHeaderImage.setImageResource(this.mHeaderImage_refreshing);
+		}
 
 		mSubHeaderText.setVisibility(View.GONE);
 	}
@@ -185,6 +226,9 @@ public class LoadingLayout extends FrameLayout {
 
 	public void pullToRefresh() {
 		mHeaderText.setText(Html.fromHtml(mPullLabel));
+		if(!rotationMode){
+		  mHeaderImage.setImageResource(this.mHeaderImage_pull);
+		}
 	}
 
 	public void setTextColor(ColorStateList color) {
@@ -221,12 +265,16 @@ public class LoadingLayout extends FrameLayout {
 	}
 
 	public void onPullY(float scaleOfHeight) {
-		mHeaderImageMatrix.setRotate(scaleOfHeight * 90, mRotationPivotX, mRotationPivotY);
-		mHeaderImage.setImageMatrix(mHeaderImageMatrix);
+	  if(rotationMode){
+	    mHeaderImageMatrix.setRotate(scaleOfHeight * 90, mRotationPivotX, mRotationPivotY);
+	    mHeaderImage.setImageMatrix(mHeaderImageMatrix);
+	  }
 	}
 
 	private void resetImageRotation() {
-		mHeaderImageMatrix.reset();
-		mHeaderImage.setImageMatrix(mHeaderImageMatrix);
+	  if(rotationMode){
+	    mHeaderImageMatrix.reset();
+	    mHeaderImage.setImageMatrix(mHeaderImageMatrix);
+	  }
 	}
 }
