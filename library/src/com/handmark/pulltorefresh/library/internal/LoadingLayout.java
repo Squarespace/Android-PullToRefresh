@@ -29,6 +29,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
@@ -47,6 +48,8 @@ public class LoadingLayout extends FrameLayout {
   private Drawable mHeaderImage_pull;
   private Drawable mHeaderImage_release;
   private Drawable mHeaderImage_refreshing;
+  private OnClickListener onLeftSideIndicatorClicked;
+  private OnClickListener onRightSideIndicatorClicked;
 
   private final Matrix mHeaderImageMatrix;
 
@@ -91,7 +94,7 @@ public class LoadingLayout extends FrameLayout {
                          false);
     return new BitmapDrawable(getResources(),b);
   }
-  public LoadingLayout(Context context, final Mode mode, TypedArray attrs) {
+  public LoadingLayout(Context context, final Mode mode, TypedArray attrs,OnClickListener onLeftSideIndicatorClicked,OnClickListener onRightSideIndicatorClicked) {
     super(context);
     rotationMode=attrs.getBoolean(R.styleable.PullToRefresh_rotation_mode,true);
     float scale=attrs.getFloat(R.styleable.PullToRefresh_pull_to_refresh_image_scale,1);

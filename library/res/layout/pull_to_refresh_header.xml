@@ -6,12 +6,24 @@
     android:paddingBottom="10dip"
     android:paddingTop="10dp" >
 
+
+    <ImageView
+        android:id="@+id/pull_to_refresh_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dip"
+        android:layout_marginRight="20dip"
+        android:paddingTop="20dp" />
+    
     <LinearLayout
         android:id="@+id/pull_to_refresh_header_ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
+        android:paddingTop="20dp"
+        android:layout_alignTop="@id/pull_to_refresh_image"
         android:orientation="vertical" >
 
         <TextView
@@ -30,14 +42,5 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:visibility="gone" />
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/pull_to_refresh_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="30dip"
-        android:layout_marginRight="20dip"
-        android:paddingTop="20dp" />
 
 </RelativeLayout>

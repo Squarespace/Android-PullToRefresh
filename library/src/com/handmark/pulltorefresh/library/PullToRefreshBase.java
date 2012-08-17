@@ -27,6 +27,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
@@ -81,6 +82,8 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 	private boolean mFilterTouchEvents = true;
 	private LoadingLayout mHeaderLayout;
 	private LoadingLayout mFooterLayout;
+  private OnClickListener onLeftSideIndicatorClicked;
+  private OnClickListener onRightSideIndicatorClicked;
 
 	private int mHeaderHeight;
 	private final Handler mHandler = new Handler();
@@ -826,8 +829,8 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 		addRefreshableView(context, mRefreshableView);
 
 		// We need to create now layouts now
-		mHeaderLayout = new LoadingLayout(context, Mode.PULL_DOWN_TO_REFRESH, a);
-		mFooterLayout = new LoadingLayout(context, Mode.PULL_UP_TO_REFRESH, a);
+		mHeaderLayout = new LoadingLayout(context, Mode.PULL_DOWN_TO_REFRESH, a,getOnLeftSideIndicatorClicked(),getOnRightSideIndicatorClicked());
+		mFooterLayout = new LoadingLayout(context, Mode.PULL_UP_TO_REFRESH, a,getOnLeftSideIndicatorClicked(),getOnRightSideIndicatorClicked());
 
 		// Add Header/Footer Views
 		updateUIForMode();
@@ -957,7 +960,23 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 		}
 	}
 
-	public static enum Mode {
+	public OnClickListener getOnLeftSideIndicatorClicked() {
+    return onLeftSideIndicatorClicked;
+  }
+
+  public void setOnLeftSideIndicatorClicked(OnClickListener onLeftSideIndicatorClicked) {
+    this.onLeftSideIndicatorClicked = onLeftSideIndicatorClicked;
+  }
+
+  public OnClickListener getOnRightSideIndicatorClicked() {
+    return onRightSideIndicatorClicked;
+  }
+
+  public void setOnRightSideIndicatorClicked(OnClickListener onRightSideIndicatorClicked) {
+    this.onRightSideIndicatorClicked = onRightSideIndicatorClicked;
+  }
+
+  public static enum Mode {
 		/**
 		 * Only allow the user to Pull Down from the top to refresh, this is the
 		 * default.

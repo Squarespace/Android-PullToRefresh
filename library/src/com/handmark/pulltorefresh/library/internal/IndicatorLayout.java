@@ -18,6 +18,7 @@ package com.handmark.pulltorefresh.library.internal;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
@@ -36,6 +37,8 @@ public class IndicatorLayout extends FrameLayout implements AnimationListener {
 
 	private Animation mInAnim, mOutAnim;
 	private ImageView mArrowImageView;
+  private OnClickListener onLeftSideIndicatorClicked;
+  private OnClickListener onRightSideIndicatorClicked;
 
 	private final Animation mRotateAnimation, mResetRotateAnimation;
 
