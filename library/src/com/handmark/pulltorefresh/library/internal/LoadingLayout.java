@@ -20,6 +20,7 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ScaleDrawable;
@@ -204,6 +205,9 @@ public class LoadingLayout extends FrameLayout {
   }
 
   public void reset() {
+    if(!rotationMode){
+      mHeaderImage.setImageDrawable(mHeaderImage_pull);
+    }
     mHeaderText.setText(Html.fromHtml(mPullLabel));
     mHeaderImage.setVisibility(View.VISIBLE);
     mHeaderImage.clearAnimation();
@@ -218,7 +222,6 @@ public class LoadingLayout extends FrameLayout {
   }
 
   public void releaseToRefresh() {
-    Log.i("LoadingLayout","Releasing:"+rotationMode);
     mHeaderText.setText(Html.fromHtml(mReleaseLabel));
     if(!rotationMode){
       mHeaderImage.setImageDrawable(mHeaderImage_release);
@@ -230,8 +233,9 @@ public class LoadingLayout extends FrameLayout {
   }
 
   public void refreshing() {
-    Log.i("LoadingLayout","Refreshing: "+rotationMode);
+    Typeface tf = mHeaderText.getTypeface();
     mHeaderText.setText(Html.fromHtml(mRefreshingLabel));
+    mHeaderText.setTypeface(tf);
     if(rotationMode){
       mHeaderImage.startAnimation(mRotateAnimation);
     }else{

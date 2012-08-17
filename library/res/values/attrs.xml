@@ -28,6 +28,8 @@
         <attr name="pull_to_refresh_pull_image" format="reference|integer"/>
         <attr name="pull_to_refresh_refreshing_image" format="reference|integer"/>
         <attr name="pull_to_refresh_release_image" format="reference|integer"/>
+        
+        <attr name="pull_to_refresh_image_right" format="reference|integer"/>
     </declare-styleable>
 
 </resources>

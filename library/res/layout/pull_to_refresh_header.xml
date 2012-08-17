@@ -5,8 +5,7 @@
     android:layout_height="fill_parent"
     android:paddingBottom="10dip"
     android:paddingTop="10dp" >
-
-
+    
     <ImageView
         android:id="@+id/pull_to_refresh_image"
         android:layout_width="wrap_content"
