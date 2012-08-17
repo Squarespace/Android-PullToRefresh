@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="pull_to_refresh_image">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">30dip</item>
+        <item name="android:layout_marginRight">20dip</item>
+        <item name="android:paddingTop">20dp</item> 
+    </style>
+</resources>
