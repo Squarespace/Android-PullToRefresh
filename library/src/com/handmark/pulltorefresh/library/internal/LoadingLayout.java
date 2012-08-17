@@ -23,14 +23,12 @@ import android.graphics.Matrix;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ScaleDrawable;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
@@ -49,8 +47,6 @@ public class LoadingLayout extends FrameLayout {
   private Drawable mHeaderImage_pull;
   private Drawable mHeaderImage_release;
   private Drawable mHeaderImage_refreshing;
-  private OnClickListener onLeftSideIndicatorClicked;
-  private OnClickListener onRightSideIndicatorClicked;
 
   private final Matrix mHeaderImageMatrix;
 

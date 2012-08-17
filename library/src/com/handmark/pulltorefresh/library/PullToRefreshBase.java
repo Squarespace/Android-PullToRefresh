@@ -27,7 +27,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
@@ -272,6 +271,12 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 	public final void onRefreshComplete() {
 		if (mState != PULL_TO_REFRESH) {
 			resetHeader();
+		}
+		if(mOnRefreshListener!=null){
+		  mOnRefreshListener.onRefreshComplete();
+		}
+		if(mOnRefreshListener2!=null){
+		  mOnRefreshListener2.onRefreshComplete();
 		}
 	}
 
@@ -1076,6 +1081,11 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 		 * from Bottom
 		 */
 		public void onRefresh();
+		
+		/**
+		 * onRefresh will be called at the end of onRefreshComplete() is called.
+		 */
+		public void onRefreshComplete();
 
 	}
 
@@ -1100,6 +1110,10 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 		 */
 		public void onPullUpToRefresh();
 
+    /**
+     * onRefresh will be called at the end of onRefreshComplete() is called.
+     */
+    public void onRefreshComplete();
 	}
 
 	final class SmoothScrollRunnable implements Runnable {

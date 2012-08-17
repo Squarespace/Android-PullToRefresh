@@ -30,6 +30,9 @@ public class PullToRefreshWebView extends PullToRefreshBase<WebView> {
 			mRefreshableView.reload();
 		}
 
+    @Override
+    public void onRefreshComplete() {}
+
 	};
 
 	private final WebChromeClient defaultWebChromeClient = new WebChromeClient() {
