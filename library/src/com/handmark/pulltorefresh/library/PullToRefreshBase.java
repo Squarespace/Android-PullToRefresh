@@ -276,7 +276,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
 		  mOnRefreshListener.onRefreshComplete();
 		}
 		if(mOnRefreshListener2!=null){
-		  mOnRefreshListener2.onRefreshComplete();
+		  mOnRefreshListener2.onRefreshCompleted();
 		}
 	}
 
@@ -1113,7 +1113,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout {
     /**
      * onRefresh will be called at the end of onRefreshComplete() is called.
      */
-    public void onRefreshComplete();
+    public void onRefreshCompleted();
 	}
 
 	final class SmoothScrollRunnable implements Runnable {

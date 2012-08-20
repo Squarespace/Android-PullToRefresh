@@ -20,7 +20,6 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
-import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.Html;
@@ -83,12 +82,12 @@ public class LoadingLayout extends FrameLayout {
     mRotateAnimation.setRepeatMode(Animation.RESTART);
   }
   public Drawable getScaledDrawable(float scale,Drawable d){
-    
+
     BitmapDrawable bd = (BitmapDrawable)d;
     Bitmap b = Bitmap.createScaledBitmap(bd.getBitmap(),
-                         (int) (bd.getIntrinsicHeight() *scale),
-                         (int) (bd.getIntrinsicWidth() *scale),
-                         false);
+        (int) (bd.getIntrinsicHeight() *scale),
+        (int) (bd.getIntrinsicWidth() *scale),
+        false);
     return new BitmapDrawable(getResources(),b);
   }
   public LoadingLayout(Context context, final Mode mode, TypedArray attrs,OnClickListener onLeftSideIndicatorClicked,OnClickListener onRightSideIndicatorClicked) {
@@ -105,7 +104,7 @@ public class LoadingLayout extends FrameLayout {
       mHeaderImage.setScaleType(ScaleType.MATRIX);
       mHeaderImage.setImageMatrix(mHeaderImageMatrix);
     }
-    
+
     final Interpolator interpolator = new LinearInterpolator();
     mRotateAnimation = new RotateAnimation(0, 360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
         0.5f);
@@ -164,7 +163,7 @@ public class LoadingLayout extends FrameLayout {
           mHeaderImage_refreshing=getScaledDrawable(scale,attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_refreshing_image));
           mHeaderImage_release=getScaledDrawable(scale,attrs.getDrawable(R.styleable.PullToRefresh_pull_to_refresh_release_image));
         }
-        
+
         break;
     }
 
@@ -228,16 +227,22 @@ public class LoadingLayout extends FrameLayout {
     mPullLabel = pullLabel;
   }
 
+  public TextView getHeaderText(){
+    return mHeaderText;
+  }
+  
+  public ImageView getHeaderImage(){
+    return mHeaderImage;
+  }
+  
   public void refreshing() {
-    Typeface tf = mHeaderText.getTypeface();
-    mHeaderText.setText(Html.fromHtml(mRefreshingLabel));
-    mHeaderText.setTypeface(tf);
+    Log.i("LoadingLayout","Refreshing");
+    mHeaderText.setText(Html.fromHtml(mRefreshingLabel).toString());
     if(rotationMode){
       mHeaderImage.startAnimation(mRotateAnimation);
     }else{
       mHeaderImage.setImageDrawable(mHeaderImage_refreshing);
     }
-
     mSubHeaderText.setVisibility(View.GONE);
   }
 
@@ -250,6 +255,7 @@ public class LoadingLayout extends FrameLayout {
   }
 
   public void pullToRefresh() {
+    //TODO
     Log.i("LoadingLayout","PullToRefresh:"+rotationMode);
     mHeaderText.setText(Html.fromHtml(mPullLabel));
     if(!rotationMode){

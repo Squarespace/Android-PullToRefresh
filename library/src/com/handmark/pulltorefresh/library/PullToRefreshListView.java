@@ -55,6 +55,14 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 		return ((InternalListView) getRefreshableView()).getContextMenuInfo();
 	}
 
+	public LoadingLayout getLoadingView(boolean top){
+	  if(top){
+	    return mHeaderLoadingView;
+	  }else{
+	    return mFooterLoadingView;
+	  }
+	}
+	
 	public void setPullLabel(String pullLabel, Mode mode,Drawable d) {
 		super.setPullLabel(pullLabel, mode);
 
@@ -127,7 +135,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<ListView
 	}
 
 	@Override
-	protected void resetHeader() {
+	public void resetHeader() {
 
 		// If we're not showing the Refreshing view, or the list is empty, then
 		// the header/footer views won't show so we use the
