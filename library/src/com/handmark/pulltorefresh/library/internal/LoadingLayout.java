@@ -24,7 +24,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.Html;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -236,7 +235,6 @@ public class LoadingLayout extends FrameLayout {
   }
   
   public void refreshing() {
-    Log.i("LoadingLayout","Refreshing");
     mHeaderText.setText(Html.fromHtml(mRefreshingLabel).toString());
     if(rotationMode){
       mHeaderImage.startAnimation(mRotateAnimation);
@@ -255,8 +253,6 @@ public class LoadingLayout extends FrameLayout {
   }
 
   public void pullToRefresh() {
-    //TODO
-    Log.i("LoadingLayout","PullToRefresh:"+rotationMode);
     mHeaderText.setText(Html.fromHtml(mPullLabel));
     if(!rotationMode){
       mHeaderImage.setImageDrawable(mHeaderImage_pull);
