@@ -10,7 +10,7 @@
     <groupId>org.sonatype.oss</groupId>
     <artifactId>oss-parent</artifactId>
     <version>7</version>
-  </parent>
+    </parent>
   <packaging>pom</packaging>
   <name>Android-PullToRefresh Project</name>
   <description>Implementation of the Pull-to-Refresh UI Pattern for Android.</description>
@@ -20,25 +20,35 @@
       <name>Apache V2</name>
       <url>http://www.apache.org/licenses/LICENSE-2.0</url>
       <distribution>repo</distribution>
-    </license>
-  </licenses>
+      </license>
+    </licenses>
   <scm>
-    <url>https://github.com/chrisbanes/Android-PullToRefresh</url>
-    <connection>scm:git:git://github.com/chrisbanes/Android-PullToRefresh.git</connection>
-    <developerConnection>scm:git:git@github.com:chrisbanes/Android-PullToRefresh.git</developerConnection>
+    <url>https://github.com/Squarespace/Android-PullToRefresh</url>
+    <connection>scm:git:git@github.com:Squarespace/Android-PullToRefresh.git</connection>
+    <developerConnection>scm:git:git@github.com:Squarespace/Android-PullToRefresh.git</developerConnection>
   </scm>
+  <distributionManagement>
+    <repository>
+      <id>squarespace-external-release</id>
+      <url>http://nexus.nyc.squarespace.net:8081/nexus/content/repositories/squarespace-external-release</url>
+    </repository>
+    <snapshotRepository>
+      <id>squarespace-external-snapshot</id>
+      <url>http://nexus.nyc.squarespace.net:8081/nexus/content/repositories/squarespace-external-snapshot</url>
+    </snapshotRepository>
+  </distributionManagement>
   <developers>
     <developer>
       <name>Chris Banes</name>
       <url>http://about.me/chrisbanes</url>
       <id>chrisbanes</id>
-    </developer>
-  </developers>
+      </developer>
+    </developers>
 
   <modules>
     <module>library</module>
     <module>sample</module>
-  </modules>
+    </modules>
 
   <properties>
     <!-- build settings -->
@@ -48,27 +58,27 @@
     <android.version>4.1.1.4</android.version>
     <android.platform>16</android.platform>
     <android-maven.version>3.2.0</android-maven.version>
-  </properties>
+    </properties>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.google.android</groupId>
-        <artifactId>android</artifactId>
+	<groupId>com.google.android</groupId>
+	<artifactId>android</artifactId>
 	<version>${android.version}</version>
-        <scope>provided</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+	<scope>provided</scope>
+	</dependency>
+      </dependencies>
+    </dependencyManagement>
 
   <build>
     <pluginManagement>
       <plugins>
-	      <!-- compiler settings -->
-	      <plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-compiler-plugin</artifactId>
-	        <version>2.3.2</version>
+	<!-- compiler settings -->
+	<plugin>
+	  <groupId>org.apache.maven.plugins</groupId>
+	  <artifactId>maven-compiler-plugin</artifactId>
+	  <version>2.3.2</version>
 	  <configuration>
             <source>${java.version}</source>
             <target>${java.version}</target>
@@ -81,46 +91,46 @@
 	  <configuration>
 	    <tagNameFormat>v@{project.version}</tagNameFormat>
 	    </configuration>
-	      </plugin>
-		      <plugin>
-		        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-		        <artifactId>android-maven-plugin</artifactId>
+	  </plugin>
+	<plugin>
+	  <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+	  <artifactId>android-maven-plugin</artifactId>
 	  <version>${android-maven.version}</version>
-				<configuration>
-            <sdk>
+	  <configuration>
+	    <sdk>
 	      <platform>${android.platform}</platform>
-            </sdk>
-            <undeployBeforeDeploy>true</undeployBeforeDeploy>
-			<source>${sourceCompatibility}</source>
-	          <target>${sourceCompatibility}</target>
-          </configuration>
-		  <extensions>true</extensions>
-        </plugin>
-         <plugin>
-	        <groupId>org.apache.maven.plugins</groupId>
-	        <artifactId>maven-eclipse-plugin</artifactId>
-	        <version>2.8</version>
-	        <configuration>
-	          <excludes>
-	            <exclude>com.google.android:android</exclude>
-	          </excludes>
-	          <buildOutputDirectory>bin</buildOutputDirectory>
-	          <classpathContainers>
-	            <classpathContainer>com.android.ide.eclipse.adt.ANDROID_FRAMEWORK</classpathContainer>
-	          </classpathContainers>
-	          <additionalProjectnatures>
-	            <projectnature>com.android.ide.eclipse.adt.AndroidNature</projectnature>
-	          </additionalProjectnatures>
-	          <additionalBuildcommands>
-	            <buildcommand>com.android.ide.eclipse.adt.ResourceManagerBuilder</buildcommand>
-	            <buildcommand>com.android.ide.eclipse.adt.PreCompilerBuilder</buildcommand>
-	            <buildcommand>com.android.ide.eclipse.adt.ApkBuilder</buildcommand>
-	          </additionalBuildcommands>
-	        </configuration>
-	      </plugin>
-      </plugins>
-    </pluginManagement>
-	<sourceDirectory>src</sourceDirectory>
-  </build>
+	      </sdk>
+	    <undeployBeforeDeploy>true</undeployBeforeDeploy>
+	    <source>${sourceCompatibility}</source>
+	    <target>${sourceCompatibility}</target>
+	    </configuration>
+	  <extensions>true</extensions>
+	  </plugin>
+	<plugin>
+	  <groupId>org.apache.maven.plugins</groupId>
+	  <artifactId>maven-eclipse-plugin</artifactId>
+	  <version>2.8</version>
+	  <configuration>
+	    <excludes>
+	      <exclude>com.google.android:android</exclude>
+	      </excludes>
+	    <buildOutputDirectory>bin</buildOutputDirectory>
+	    <classpathContainers>
+	      <classpathContainer>com.android.ide.eclipse.adt.ANDROID_FRAMEWORK</classpathContainer>
+	      </classpathContainers>
+	    <additionalProjectnatures>
+	      <projectnature>com.android.ide.eclipse.adt.AndroidNature</projectnature>
+	      </additionalProjectnatures>
+	    <additionalBuildcommands>
+	      <buildcommand>com.android.ide.eclipse.adt.ResourceManagerBuilder</buildcommand>
+	      <buildcommand>com.android.ide.eclipse.adt.PreCompilerBuilder</buildcommand>
+	      <buildcommand>com.android.ide.eclipse.adt.ApkBuilder</buildcommand>
+	      </additionalBuildcommands>
+	    </configuration>
+	  </plugin>
+	</plugins>
+      </pluginManagement>
+    <sourceDirectory>src</sourceDirectory>
+    </build>
 
 </project>
