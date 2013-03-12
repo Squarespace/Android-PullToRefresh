@@ -4,7 +4,7 @@
   xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.handmark.pulltorefresh</groupId>
-  <artifactId>pulltorefresh-project</artifactId>
+  <artifactId>parent</artifactId>
   <version>1.3.0-SNAPSHOT</version>
   <parent>
     <groupId>org.sonatype.oss</groupId>
