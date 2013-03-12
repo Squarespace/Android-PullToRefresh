@@ -9,7 +9,7 @@
   <packaging>pom</packaging>
   <name>Android-PullToRefresh Project</name>
   <description>Implementation of the Pull-to-Refresh UI Pattern for Android.</description>
-  <url>https://github.com/chrisbanes/Android-PullToRefresh</url>
+  <url>https://github.com/Squarespace/Android-PullToRefresh</url>
   <licenses>
     <license>
       <name>Apache V2</name>
@@ -37,9 +37,8 @@
       <name>Chris Banes</name>
       <url>http://about.me/chrisbanes</url>
       <id>chrisbanes</id>
-      </developer>
-    </developers>
-
+    </developer>
+  </developers>
   <modules>
     <module>library</module>
     <module>sample</module>
