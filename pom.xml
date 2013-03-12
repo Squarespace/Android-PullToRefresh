@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.handmark.pulltorefresh</groupId>
   <artifactId>parent</artifactId>
-  <version>1.3.1-SNAPSHOT</version>
+  <version>1.3.1</version>
   <packaging>pom</packaging>
   <name>Android-PullToRefresh Project</name>
   <description>Implementation of the Pull-to-Refresh UI Pattern for Android.</description>
@@ -19,6 +19,7 @@
     <url>https://github.com/Squarespace/Android-PullToRefresh</url>
     <connection>scm:git:git@github.com:Squarespace/Android-PullToRefresh.git</connection>
     <developerConnection>scm:git:git@github.com:Squarespace/Android-PullToRefresh.git</developerConnection>
+    <tag>pulltorefresh-library-1.3.1</tag>
   </scm>
   <distributionManagement>
     <repository>
