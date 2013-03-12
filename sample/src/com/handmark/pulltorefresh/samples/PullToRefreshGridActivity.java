@@ -66,6 +66,9 @@ public class PullToRefreshGridActivity extends Activity {
 				new GetDataTask().execute();
 			}
 
+			@Override
+			public void onRefreshCompleted() {
+			}
 		});
 
 		mListItems = new LinkedList<String>();

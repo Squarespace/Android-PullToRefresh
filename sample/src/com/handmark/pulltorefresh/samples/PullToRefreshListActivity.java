@@ -60,6 +60,10 @@ public class PullToRefreshListActivity extends ListActivity {
 				// Do work to refresh the list here.
 				new GetDataTask().execute();
 			}
+			
+			@Override 
+			public void onRefreshComplete() {
+			}
 		});
 
 		ListView actualListView = mPullRefreshListView.getRefreshableView();

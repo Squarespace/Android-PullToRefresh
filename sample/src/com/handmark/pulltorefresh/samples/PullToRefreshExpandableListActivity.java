@@ -51,6 +51,10 @@ public class PullToRefreshExpandableListActivity extends ExpandableListActivity 
 				// Do work to refresh the list here.
 				new GetDataTask().execute();
 			}
+
+			@Override
+			public void onRefreshComplete() {
+			}
 		});
 
 		mListItems = new LinkedList<String>();
