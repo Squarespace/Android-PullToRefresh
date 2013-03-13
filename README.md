@@ -17,6 +17,22 @@ This project aims to provide a reusable Pull to Refresh widget for Android. It w
 
 Repository at <https://github.com/chrisbanes/Android-PullToRefresh>.
 
+## Extra customization Options from edsionw.
+
+Added more customization parameters (see: library/res/values/attrs.xml)
+
+ * "pull_to_refresh_from_bottom_pull_label" 
+ * "pull_to_refresh_from_bottom_refreshing_label"
+ * "pull_to_refresh_from_bottom_release_label"
+ * "pull_to_refresh_pull_label"
+ * "pull_to_refresh_refreshing_label"
+ * "pull_to_refresh_release_label"
+ * Added "rotation_mode" (true/false, if you want the image to rotate during refresh)
+ * Added "pull_to_refresh_image_scale", scale on the image given. 
+ * Added "pull_to_refresh_pull_image", resource id for the image when pulling.
+ * Added "pull_to_refresh_refreshing_image", resource id for the image while refreshing.
+ * Added "pull_to_refresh_release_image", resource id for the image when released.
+
 ## Sample Application
 The sample application (the source is in the repository) has been published onto Google Play for easy access:
 
